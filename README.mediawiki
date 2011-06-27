@@ -1,0 +1,21 @@
+This work was sponsored by [http://remainsoftware.com Remain Software] and [http://industrial-tsi.com Industrial TSI]. 
+=Server Side OSGi=
+Clone this repository in Eclipse and checkout the two projects. The import the CVS project that are declared in the equinox.server.psf file. 
+This can be done by right-clicking the PSF file and selecting Import Project Set ...
+
+==Deployment==
+* Open the product file and click '''Eclipse Product export wizard'''. 
+* Specify WEB-INF for the directory, uncheck "Synchronize before exporting" 
+and enter "c:\somedir\remainsoftware.war" in the "Destination" "Archive file" text box. 
+* Press Finish.
+* Start tomcat and deploy the war file. 
+
+The webpage should be available here [http://localhost/remainsoftware/remain/software http://localhost/remainsoftware/remain/software].
+
+Have fun and drop me a line with your comments
+
+wim.jongman@remainsoftware.com
+
+==Acknowledgments==
+Thanks to Scott Lewis for his initial startup work and boiler plate code
+
