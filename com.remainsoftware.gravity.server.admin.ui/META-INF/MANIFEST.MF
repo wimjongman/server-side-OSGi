@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Gravity Server Admin UI
-Bundle-SymbolicName: com.remainsoftware.gravity.server.admin.ui
+Bundle-SymbolicName: com.remainsoftware.server.admin.ui
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.remainsoftware.gravity.internal.server.admin.ui.Activator
 Bundle-Vendor: Remain Software

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.remainsoftware.gravity.server.feature"
-      label="Gravity Server Feature"
+      id="com.remainsoftware.server.feature"
+      label="OSGi Server Feature"
       version="1.0.0.qualifier"
       provider-name="Remain Software">
 
