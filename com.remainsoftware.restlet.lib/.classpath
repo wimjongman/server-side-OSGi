@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="libs/support/httpclient-4.2.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/support/httpcore-4.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/support/commons-fileupload-1.3/lib/commons-fileupload-1.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.atom.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.crypto.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.fileupload.jar" sourcepath="docs"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.httpclient.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.jaas.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.javamail.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.jaxb.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.json.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.net.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.slf4j.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.ssl.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.xml.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.ext.xstream.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/restlet/org.restlet.jar" sourcepath="docs/lib-src"/>
+	<classpathentry exported="true" kind="lib" path="libs/support/gson-2.2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/support/javax.mail.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/support/jul-to-slf4j-1.7.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/support/org.apache.commons.logging.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/support/org.json.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
