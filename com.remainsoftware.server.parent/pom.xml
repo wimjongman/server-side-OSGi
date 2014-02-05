@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.remainsoftware.server.parent</groupId>
+	<artifactId>com.remainsoftware.server.parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>../com.remainsoftware.server.admin.ui</module>
+		<module>../com.remainsoftware.server.feature</module>
+		<module>../com.remainsoftware.server.product</module>
+	</modules>
+	<properties>
+		<tycho-version>0.18.1</tycho-version>
+		<target.os>win32</target.os>
+		<target.ws>win32</target.ws>
+		<target.arch>x86_64</target.arch>
+		<target.platform.path>${target.os}/${target.ws}/${target.arch}</target.platform.path>
+		<product.finalName>server</product.finalName>
+		<product.id>com.remainsoftware.server.product</product.id>
+		<product.outputDirectory>${project.build.directory}/products/${product.id}/${target.platform.path}</product.outputDirectory>
+		<!-- web-inf directory corresponds to the <rootFolder> definition of the 
+			tycho configuration -->
+		<product.web-inf.directory>${product.outputDirectory}/WEB-INF/</product.web-inf.directory>
+		<!-- root_files not as project resources as this did not resolve properly 
+			(all resources copied to WEB-INF) -->
+		<project.rootfiles.directory>${project.basedir}/root_files/</project.rootfiles.directory>
+	</properties>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>tycho-snapshots</id>
+			<url>https://oss.sonatype.org/content/groups/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<profiles>
+		<profile>
+			<id>kepler</id>
+
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<repositories>
+
+				<repository>
+					<id>kepler</id>
+					<layout>p2</layout>
+					<url>http://download.eclipse.org/releases/kepler</url>
+				</repository>
+
+				<repository>
+					<id>orbit</id>
+					<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20130517111416/repository/</url>
+					<layout>p2</layout>
+				</repository>
+
+			</repositories>
+		</profile>
+	</profiles>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<environments>
+						<environment>
+							<os>${target.os}</os>
+							<ws>${target.ws}</ws>
+							<arch>${target.arch}</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-director-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>materialize-products</id>
+						<goals>
+							<goal>materialize-products</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>archive-products</id>
+						<goals>
+							<goal>archive-products</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<products>
+						<product>
+							<!-- id = UID to be located in ws\target\products\?.?.?.product directory 
+								and the required ?.product file will contain an uid=.. -->
+							<id>${product.id}</id>
+							<archiveFileName>${product.finalName}</archiveFileName>
+							<rootFolder>WEB-INF</rootFolder>
+						</product>
+					</products>
+				</configuration>
+			</plugin>
+
+			<!-- Remove javax.servlet et al from the bundles.info -->
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>1.5.2</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<file>${product.web-inf.directory}/configuration/org.eclipse.equinox.simpleconfigurator/bundles.info</file>
+					<token>javax\.servlet.*false|org\.hamcrest.*false|org\.junit.*false</token>
+					<regexFlags>
+						<regexFlag>CASE_INSENSITIVE</regexFlag>
+						<!-- <regexFlag>UNIX_LINES</regexFlag> -->
+					</regexFlags>
+					<!-- in case the simpleConfigurator bundle is not included in the build -->
+					<ignoreMissingFile>true</ignoreMissingFile>
+				</configuration>
+			</plugin>
+
+			<!-- copy over resources we want in the war -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>copying required resources;
+									dir=${project.basedir}/root_files,
+									todir=${product.outputDirectory}</echo>
+								<copy overwrite="true" todir="${product.outputDirectory}">
+									<fileset dir="${project.rootfiles.directory}" includes="**/*" />
+								</copy>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Configure the assembly plugin to build the final server war file -->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptors>
+						<descriptor>assembly.xml</descriptor>
+					</descriptors>
+					<finalName>${product.finalName}</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

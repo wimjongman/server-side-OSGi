@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="com.remainsoftware.server.feature"
-      label="OSGi Server Feature"
+      label="Remain Software Server Feature"
       version="1.0.0.qualifier"
       provider-name="Remain Software">
 
@@ -17,58 +17,26 @@
       [Enter License Description here.]
    </license>
 
-   <requires>
-      <import feature="org.eclipse.equinox.server.core" version="0.0.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.equinox.server.servletbridge" version="0.0.0" match="greaterOrEqual"/>
-   </requires>
-
    <plugin
-         id="org.eclipse.equinox.servletbridge"
+         id="com.remainsoftware.server.admin.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="javax.servlet"
+         id="org.eclipse.equinox.http.servlet"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="javax.xml"
+         id="org.eclipse.equinox.servletbridge.extensionbundle"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.remainsoftware.gravity.server.admin.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.core.runtime"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.core.contenttype"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.equinox.common"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
+         fragment="true"
          unpack="false"/>
 
 </feature>

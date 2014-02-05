@@ -3,6 +3,7 @@
 
 <product name="Server" uid="com.remainsoftware.server.product" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="false">
 
+
    <configIni use="default">
    </configIni>
 
@@ -13,6 +14,7 @@
 
    <windowImages/>
 
+
    <launcher>
       <solaris/>
       <win useIco="false">
@@ -20,16 +22,18 @@
       </win>
    </launcher>
 
+
    <vm>
    </vm>
+
 
    <plugins>
    </plugins>
 
    <features>
-      <feature id="com.remainsoftware.gravity.server.feature" version="1.0.0.qualifier"/>
       <feature id="org.eclipse.equinox.server.core"/>
-      <feature id="org.eclipse.equinox.server.servletbridge"/>
+      <feature id="org.eclipse.equinox.server.p2"/>
+      <feature id="com.remainsoftware.server.feature"/>
    </features>
 
    <configurations>
