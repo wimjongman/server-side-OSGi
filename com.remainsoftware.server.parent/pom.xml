@@ -11,6 +11,7 @@
 		<module>../com.remainsoftware.server.admin.ui</module>
 		<module>../com.remainsoftware.server.feature</module>
 		<module>../com.remainsoftware.server.product</module>
+		<module>../com.remainsoftware.server.site</module>
 		<module>../org.eclipse.equinox.servletbridge.extensionbundle</module>
 	</modules>
 	<properties>

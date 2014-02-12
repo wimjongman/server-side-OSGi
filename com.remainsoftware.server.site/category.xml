@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.remainsoftware.server.feature_1.0.0.qualifier.jar" id="com.remainsoftware.server.feature" version="1.0.0.qualifier">
+      <category name="server.category"/>
+   </feature>
+   <category-def name="server.category" label="Server Components">
+      <description>
+         Contains all the server components needed to run inside
+      </description>
+   </category-def>
+</site>
