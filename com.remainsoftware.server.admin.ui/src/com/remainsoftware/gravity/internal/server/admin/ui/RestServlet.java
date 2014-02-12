@@ -6,16 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdminServlet extends AbstractServlet {
+public class RestServlet extends AbstractServlet {
 
-	private static final long serialVersionUID = 2819447989271128964L;
+	private static final long serialVersionUID = 672864964579366536L;
 
-	public AdminServlet(AbstractComponent component) {
+	public RestServlet(AbstractComponent component) {
 		super(component);
-	}
-
-	String getAdminAlias() {
-		return AdminComponent.ALIAS;
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -26,6 +22,7 @@ public class AdminServlet extends AbstractServlet {
 		response.append("<br/><br/><br/><br/>Remain Software and Industrial-TSI say Hello<br/><br/><br/>");
 		response.append("You can learn this!!<br/><br/>");
 		response.append("Let us teach you how: <b>+31 (0)30-600 50 10</b>");
+		response.append("<p/>Path = " + req.getPathInfo());
 		response.append("</center></h1></body></html>");
 		resp.setContentType("text/html");
 		resp.getWriter().write(response.toString());

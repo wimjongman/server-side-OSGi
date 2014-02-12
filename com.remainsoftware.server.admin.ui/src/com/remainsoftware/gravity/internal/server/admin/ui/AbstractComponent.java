@@ -10,9 +10,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;
 
-public class AdminComponent extends AbstractComponent {
-
-	public static final String ALIAS = "/remain/software";
+public abstract class AbstractComponent {
 
 	class AdminHttpContext implements HttpContext {
 		public URL getResource(String name) {
@@ -46,22 +44,24 @@ public class AdminComponent extends AbstractComponent {
 
 	void activate(BundleContext context) throws Exception {
 		this.context = context;
-		this.httpService.registerServlet(ALIAS, new AdminServlet(this), null,
+		this.httpService.registerServlet(getAlias(), getServlet(this), null,
 				httpContext);
 	}
 
 	void deactivate() {
-		this.httpService.unregister(ALIAS);
+		this.httpService.unregister(getAlias());
 		this.context = null;
 	}
 
-	@Override
-	public String getAlias() {
-		return ALIAS;
-	}
+	/**
+	 * @return the alias under which this component is known (e.g.
+	 *         /product/info)
+	 */
+	public abstract String getAlias();
 
-	@Override
-	public AbstractServlet getServlet(AbstractComponent component) {
-		return new AdminServlet(component);
-	}
+	/**
+	 * @return the associated servlet that can handle the request
+	 */
+	public abstract AbstractServlet getServlet(AbstractComponent component);
+
 }

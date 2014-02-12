@@ -10,9 +10,9 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;
 
-public class AdminComponent extends AbstractComponent {
+public class RestComponent extends AbstractComponent {
 
-	public static final String ALIAS = "/remain/software";
+	public static final String ALIAS = "/remain/rest";
 
 	class AdminHttpContext implements HttpContext {
 		public URL getResource(String name) {
@@ -46,7 +46,7 @@ public class AdminComponent extends AbstractComponent {
 
 	void activate(BundleContext context) throws Exception {
 		this.context = context;
-		this.httpService.registerServlet(ALIAS, new AdminServlet(this), null,
+		this.httpService.registerServlet(ALIAS, getServlet(this), null,
 				httpContext);
 	}
 
@@ -62,6 +62,6 @@ public class AdminComponent extends AbstractComponent {
 
 	@Override
 	public AbstractServlet getServlet(AbstractComponent component) {
-		return new AdminServlet(component);
+		return new RestServlet(component);
 	}
 }
