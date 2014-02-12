@@ -14,7 +14,7 @@
 				<exclude>WEB-INF/plugins/javax.servlet*.jar</exclude>
 				<exclude>WEB-INF/plugins/org.hamcrest*.jar</exclude>
 				<exclude>WEB-INF/plugins/**junit*/</exclude>
-				<exclude>WEB-INF/lib/org.eclipse.equinox.servletbridge_1.2.0.v20100201.jar
+				<exclude>WEB-INF/lib/org.eclipse.equinox.servletbridge_1.2*.jar
 				</exclude>
 				<exclude>apple-touch-icon*</exclude>
 			</excludes>

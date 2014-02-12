@@ -42,6 +42,12 @@
 				</repository>
 
 				<repository>
+					<id>eclipse43</id>
+					<layout>p2</layout>
+					<url>http://download.eclipse.org/eclipse/updates/4.3</url>
+				</repository>
+
+				<repository>
 					<id>orbit</id>
 					<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20130517111416/repository/</url>
 					<layout>p2</layout>

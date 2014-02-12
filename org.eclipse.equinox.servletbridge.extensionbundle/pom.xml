@@ -11,6 +11,6 @@
 	</parent>
 	<groupId>org.eclipse.equinox</groupId>
 	<artifactId>org.eclipse.equinox.servletbridge.extensionbundle</artifactId>
-	<version>0.1.2</version>
 	<packaging>eclipse-plugin</packaging>
+	<version>1.3.0-SNAPSHOT</version>
 </project>
